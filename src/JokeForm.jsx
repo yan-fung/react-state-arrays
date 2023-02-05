@@ -1,11 +1,11 @@
 import { useState } from "react";
 
-function JokeForm({ onNewJoke }) {
+function JokeForm({ onAddJoke }) {
   const [text, setText] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    onNewJoke(text)
+    onAddJoke(text)
     setText("")
   }
 
