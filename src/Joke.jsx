@@ -1,35 +1,20 @@
-import { useState } from 'react';
-
-export default function Joke({ id, text, favourite, onFavourite }) {
-
-  const [likes, setLikes] = useState(0);
-  const [dislikes, setDislikes] = useState(0);
-
-
+export default function Joke({ id, text, onDelete, likes, onLike, onDislike }) {
+  
   const handleLike = () => {
-    const newLike = likes + 1;
-    setLikes(newLike)
-    console.log(`like id: ${id}, totalLikes ${newLike}`)
+    onLike(id)
   }
 
   const handleDislike = () => {
-    const newDislike = dislikes + 1;
-    setDislikes(newDislike)
-    console.log(`dislike id: ${id}, totalDislike ${newDislike}`)
+    onDislike(id)
   }
-
-  const handleFavourite = () => {
-    onFavourite(id)
-  }
-
+  
   return (
     <div>
       <p>{text}</p>
-      <p>Likes: {likes - dislikes}</p>
-      <p>Favourite: {favourite ? "Yes" : "No"}</p>
+      <p>Likes: {likes}</p>
       <button onClick={handleLike}>👍</button>
       <button onClick={handleDislike}>👎</button>
-      <button onClick={handleFavourite}>Favourite</button>
+      <button onClick={() => onDelete(id)}>Delete</button>
     </div>
   )
 }
